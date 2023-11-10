@@ -86,11 +86,42 @@ class LinkedList {
         }
         return listValues
     }
+
+    reverse(){
+        if(!this.head.next){
+            return this.head;
+        }
+
+
+        let currentNode = this.head;
+        let nextNode = currentNode.next;
+        this.tail = this.head;
+        while (nextNode !== null){
+            let temp = nextNode.next;
+            nextNode.next = currentNode;
+            currentNode = nextNode;
+            nextNode = temp;
+        }
+
+        this.head.next = null;
+        this.head = currentNode;
+
+        return this;
+        //
+
+
+    }
 }
 
 const myLinkedList = new LinkedList(50);
 
-console.log(myLinkedList.append(22))
-console.log(myLinkedList.insert(3, 100))
-console.log(myLinkedList.remove(1))
+myLinkedList.append(22)
+myLinkedList.insert(3, 100)
+myLinkedList.append(75)
+
+// myLinkedList.remove(1))
 console.log(myLinkedList.printList())
+myLinkedList.reverse();
+console.log(myLinkedList.printList())
+
+
